@@ -1,0 +1,556 @@
+{
+	"info": {
+		"_postman_id": "9faec33a-fa5e-4daa-91cf-88f7cd49d65d",
+		"name": "GestionInmueble - API Tests",
+		"description": "Colección de pruebas BDD para Gestión de Inmuebles",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "46786116"
+	},
+	"item": [
+		{
+			"name": "GestionInmueble",
+			"item": [
+				{
+					"name": "RegistrarInmueble",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// GIVEN: Establecer valores de prueba (Set test values)",
+									"pm.environment.set(\"inmuebleId\", \"INM001\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// THEN: Verificar el resultado esperado (Verify expected result)",
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"pm.test(\"Validar respuesta esperada\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    // Campo esperado: idInmueble, Valor esperado: INM001",
+									"    pm.expect(jsonData.idInmueble).to.eql(\"INM001\");",
+									"    pm.expect(jsonData.estado).to.eql(\"REGISTRADO\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"idInmueble\": \"INM001\",\n  \"direccion\": \"Av. Principal 123\",\n  \"tipo\": \"CASA\",\n  \"area\": 150.5\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/inmueble/registrar",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"inmueble",
+								"registrar"
+							]
+						},
+						"description": "BDD - RegistrarInmueble"
+					},
+					"response": []
+				},
+				{
+					"name": "ConsultarInmueble",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// GIVEN: Establecer valores de prueba (Set test values)",
+									"pm.environment.set(\"inmuebleId\", \"INM001\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// THEN: Verificar el resultado esperado (Verify expected result)",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Validar respuesta esperada\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    // Campo esperado: idInmueble, Valor esperado: INM001",
+									"    pm.expect(jsonData.idInmueble).to.eql(\"INM001\");",
+									"    pm.expect(jsonData.tipo).to.eql(\"CASA\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/inmueble/consultar?idInmueble={{inmuebleId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"inmueble",
+								"consultar"
+							],
+							"query": [
+								{
+									"key": "idInmueble",
+									"value": "{{inmuebleId}}"
+								}
+							]
+						},
+						"description": "BDD - ConsultarInmueble"
+					},
+					"response": []
+				},
+				{
+					"name": "ActualizarInmueble",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// GIVEN: Establecer valores de prueba (Set test values)",
+									"pm.environment.set(\"inmuebleId\", \"INM001\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// THEN: Verificar el resultado esperado (Verify expected result)",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Validar respuesta esperada\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.idInmueble).to.eql(\"INM001\");",
+									"    pm.expect(jsonData.area).to.eql(160.0);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"idInmueble\": \"INM001\",\n  \"area\": 160.0\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/inmueble/actualizar",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"inmueble",
+								"actualizar"
+							]
+						},
+						"description": "BDD - ActualizarInmueble"
+					},
+					"response": []
+				},
+				{
+					"name": "EliminarInmueble",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// GIVEN: Establecer valores de prueba (Set test values)",
+									"pm.environment.set(\"inmuebleId\", \"INM001\");"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// THEN: Verificar el resultado esperado (Verify expected result)",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Validar respuesta esperada\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.mensaje).to.eql(\"Inmueble eliminado correctamente\");",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/inmueble/eliminar",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"inmueble",
+								"eliminar"
+							]
+						},
+						"description": "BDD - EliminarInmueble"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "EvaluarCondicionesTecnicas",
+			"item": [
+				{
+					"name": "EvaluarRequisitos",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// GIVEN: Establecer valores de prueba (Set test values)",
+									"pm.environment.set(\"inmuebleId\", \"INM001\");",
+									"pm.environment.set(\"tasacionId\", \"TAS001\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// THEN: Verificar el resultado esperado (Verify expected result)",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Validar respuesta esperada\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    // Campo esperado: requisitosCumplidos, Valor esperado: true",
+									"    pm.expect(jsonData.requisitosCumplidos).to.eql(true);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"inmuebleId\": \"INM001\",\n  \"montoPreAprobado\": 250000.00\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/tasacion/evaluar-requisitos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"tasacion",
+								"evaluar-requisitos"
+							]
+						},
+						"description": "BDD - EvaluarRequisitos"
+					},
+					"response": []
+				},
+				{
+					"name": "EmitirResultadosEvaluacion",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// GIVEN: Establecer valores de prueba (Set test values)",
+									"pm.environment.set(\"inmuebleId\", \"INM001\");",
+									"pm.environment.set(\"tasacionId\", \"TAS001\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// THEN: Verificar el resultado esperado (Verify expected result)",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Validar respuesta esperada\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    // Campo esperado: evaluacionExitosa, Valor esperado: true",
+									"    pm.expect(jsonData.evaluacionExitosa).to.eql(true);",
+									"    pm.expect(jsonData.estadoEvaluacion).to.eql(\"APROBADA\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"tasacionId\": \"TAS001\",\n  \"inmuebleId\": \"INM001\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/tasacion/emitir-resultados",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"tasacion",
+								"emitir-resultados"
+							]
+						},
+						"description": "BDD - EmitirResultadosEvaluacion"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "AdministrarTasacion",
+			"item": [
+				{
+					"name": "IniciarTasacion",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// GIVEN: Establecer valores de prueba (Set test values)",
+									"pm.environment.set(\"inmuebleId\", \"INM001\");",
+									"pm.environment.set(\"tasacionId\", \"TAS001\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// THEN: Verificar el resultado esperado (Verify expected result)",
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"pm.test(\"Validar respuesta esperada\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    // Campo esperado: idTasacion, Valor esperado: TAS001",
+									"    pm.expect(jsonData.idTasacion).to.eql(\"TAS001\");",
+									"    pm.expect(jsonData.estado).to.eql(\"INICIADA\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"idTasacion\": \"TAS001\",\n  \"inmuebleId\": \"INM001\",\n  \"fechaSolicitud\": \"2025-07-22\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/tasacion/iniciar",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"tasacion",
+								"iniciar"
+							]
+						},
+						"description": "BDD - IniciarTasacion"
+					},
+					"response": []
+				},
+				{
+					"name": "ObtenerInformeTasacion",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// GIVEN: Establecer valores de prueba (Set test values)",
+									"pm.environment.set(\"tasacionId\", \"TAS001\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// THEN: Verificar el resultado esperado (Verify expected result)",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Validar respuesta esperada\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    // Campo esperado: informeGenerado, Valor esperado: true",
+									"    pm.expect(jsonData.idTasacion).to.eql(\"TAS001\");",
+									"    pm.expect(jsonData.informeGenerado).to.eql(true);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/tasacion/informe?tasacionId={{tasacionId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"tasacion",
+								"informe"
+							],
+							"query": [
+								{
+									"key": "tasacionId",
+									"value": "{{tasacionId}}"
+								}
+							]
+						},
+						"description": "BDD - ObtenerInformeTasacion"
+					},
+					"response": []
+				},
+				{
+					"name": "ValidarInformeTasacion",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// GIVEN: Establecer valores de prueba (Set test values)",
+									"pm.environment.set(\"tasacionId\", \"TAS001\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// THEN: Verificar el resultado esperado (Verify expected result)",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Validar respuesta esperada\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    // Campo esperado: informeValidado, Valor esperado: true",
+									"    pm.expect(jsonData.idTasacion).to.eql(\"TAS001\");",
+									"    pm.expect(jsonData.informeValidado).to.eql(true);",
+									"    pm.expect(jsonData.estado).to.eql(\"VALIDADO\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"tasacionId\": \"TAS001\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/tasacion/validar-informe",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"tasacion",
+								"validar-informe"
+							]
+						},
+						"description": "BDD - ValidarInformeTasacion"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "{{baseUrl}}",
+			"type": "string"
+		}
+	]
+}

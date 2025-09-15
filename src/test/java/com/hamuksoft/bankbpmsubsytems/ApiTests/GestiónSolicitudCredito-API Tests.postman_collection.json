@@ -1,0 +1,484 @@
+{
+	"info": {
+		"_postman_id": "a335450a-6212-42a7-a16a-ff5ef76e1593",
+		"name": "GestiónSolicitudCredito",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40763143"
+	},
+	"item": [
+		{
+			"name": "GestionarSolicitudCredito",
+			"item": [
+				{
+					"name": "Crear solicitud",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// GIVEN: Se desea crear una nueva solicitud con ID SOL123 y estado PENDIENTE",
+									"// WHEN: Se envía una solicitud POST a /solicitudes",
+									"// THEN: El código de estado debe ser 201",
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"// THEN: El campo id debe ser igual a SOL123",
+									"pm.test(\"Campo id es SOL123\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.id).to.eql(\"SOL123\");",
+									"});",
+									"",
+									"// THEN: El campo estado debe ser igual a PENDIENTE",
+									"pm.test(\"Campo estado es PENDIENTE\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.estado).to.eql(\"PENDIENTE\");",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": \"SOL123\",\n  \"estado\": \"PENDIENTE\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/solicitudes",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"solicitudes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar estado",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// GIVEN: Una solicitud de crédito previamente creada",
+									"// WHEN: Se actualiza su estado a APROBADO con un PUT a /solicitudes/{{id}}/estado",
+									"// THEN: El código de estado debe ser 200",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// THEN: El campo estado debe ser APROBADO",
+									"pm.test(\"Campo estado es APROBADO\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.estado).to.eql(\"APROBADO\");",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"estado\": \"APROBADO\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/solicitudes/{{id}}/estado",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"solicitudes",
+								"{{id}}",
+								"estado"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Rechazar solicitud",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// GIVEN: Una solicitud existente que debe ser rechazada",
+									"// WHEN: Se envía una solicitud DELETE a /solicitudes/{{id}}",
+									"// THEN: El código de estado debe ser 204 indicando que fue eliminada exitosamente",
+									"pm.test(\"Status code is 204\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/solicitudes/{{id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"solicitudes",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar solicitud",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// GIVEN: Una solicitud previamente creada con ID {{id}}",
+									"// WHEN: Se consulta con un GET a /solicitudes/{{id}}",
+									"// THEN: El código de estado debe ser 200",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// THEN: El campo id debe coincidir con {{id}}",
+									"pm.test(\"Campo id es {{id}}\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.id).to.eql(\"{{id}}\");",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/solicitudes/{{id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"solicitudes",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ProcesarGarantias",
+			"item": [
+				{
+					"name": "Consultar garantías",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// GIVEN: Garantías registradas en el sistema",
+									"// WHEN: Se consulta la lista de garantías con un GET a /garantias",
+									"// THEN: El código de estado debe ser 200",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/garantias",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"garantias"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Validar garantías",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// GIVEN: Una garantía del tipo hipoteca",
+									"// WHEN: Se envía una solicitud POST a /garantias/validar",
+									"// THEN: El código de estado debe ser 200",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// THEN: El campo valida debe ser true",
+									"pm.test(\"Campo valida es True\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.valida).to.eql(true);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"tipo\": \"hipoteca\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/garantias/validar",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"garantias",
+								"validar"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ProcesarRiesgos",
+			"item": [
+				{
+					"name": "Realizar evaluación",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// GIVEN: Información para evaluar riesgo con evaluación ALTA",
+									"// WHEN: Se realiza una evaluación con un POST a /riesgos/evaluar",
+									"// THEN: El código de estado debe ser 200",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// THEN: El campo evaluacion debe ser ALTA",
+									"pm.test(\"Campo evaluacion es ALTA\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.evaluacion).to.eql(\"ALTA\");",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"evaluacion\": \"ALTA\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/riesgos/evaluar",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"riesgos",
+								"evaluar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar scoring",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// GIVEN: Un ID de cliente para consultar su scoring",
+									"// WHEN: Se envía una solicitud GET a /riesgos/scoring/{{id}}",
+									"// THEN: El código de estado debe ser 200",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/riesgos/scoring/{{id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"riesgos",
+								"scoring",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ProcesarAprobacion",
+			"item": [
+				{
+					"name": "Aprobar instancia",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// GIVEN: Una instancia de aprobación lista para ser aprobada",
+									"// WHEN: Se envía una solicitud POST a /aprobaciones/{{id}}/aprobar",
+									"// THEN: El código de estado debe ser 200",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/aprobaciones/{{id}}/aprobar",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"aprobaciones",
+								"{{id}}",
+								"aprobar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Coordinar aprobación",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// GIVEN: Una instancia de aprobación pendiente de coordinación",
+									"// WHEN: Se envía una solicitud POST a /aprobaciones/{{id}}/coordinar",
+									"// THEN: El código de estado debe ser 200",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/aprobaciones/{{id}}/coordinar",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"aprobaciones",
+								"{{id}}",
+								"coordinar"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,736 @@
+{
+	"info": {
+		"_postman_id": "0d0f5122-043a-4091-a8df-62be316f5b8c",
+		"name": "GestionCreditos - API Tests",
+		"description": "Colección de pruebas BDD para Gestión de Créditos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25444845",
+		"_collection_link": "https://hamuksoft.postman.co/workspace/757b02df-2f1d-4217-a476-a6e02651c853/collection/25444845-0d0f5122-043a-4091-a8df-62be316f5b8c?action=share&source=collection_link&creator=25444845"
+	},
+	"item": [
+		{
+			"name": "GestionarCredito",
+			"item": [
+				{
+					"name": "AprobarCredito",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// GIVEN: Establecer valores de prueba (Set test values)",
+									"pm.environment.set(\"creditoId\", \"12345\");",
+									"pm.environment.set(\"contratoId\", \"C001\");",
+									"pm.environment.set(\"desembolsoId\", \"D001\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// THEN: Verificar el resultado esperado (Verify expected result)",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Validar respuesta esperada\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    // Campo esperado: estado, Valor esperado: APROBADO",
+									"    pm.expect(jsonData.estado).to.eql(\"APROBADO\");",
+									"});",
+									"pm.test(\"Tiempo de respuesta < 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"creditoId\": \"12345\"\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/credito/aprobar",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"credito",
+								"aprobar"
+							]
+						},
+						"description": "BDD - AprobarCredito"
+					},
+					"response": []
+				},
+				{
+					"name": "RechazarCredito",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// GIVEN: Establecer valores de prueba (Set test values)",
+									"pm.environment.set(\"creditoId\", \"12345\");",
+									"pm.environment.set(\"contratoId\", \"C001\");",
+									"pm.environment.set(\"desembolsoId\", \"D001\");"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// THEN: Verificar el resultado esperado (Verify expected result)",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Validar respuesta esperada\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    // Campo esperado: estado, Valor esperado: RECHAZADO",
+									"    pm.expect(jsonData.estado).to.eql(\"RECHAZADO\");",
+									"});",
+									"pm.test(\"Tiempo de respuesta < 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"creditoId\": \"12345\"\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/credito/rechazar",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"credito",
+								"rechazar"
+							]
+						},
+						"description": "BDD - RechazarCredito"
+					},
+					"response": []
+				},
+				{
+					"name": "ActualizarEstadoCredito",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// GIVEN: Establecer valores de prueba (Set test values)",
+									"pm.environment.set(\"creditoId\", \"12345\");",
+									"pm.environment.set(\"contratoId\", \"C001\");",
+									"pm.environment.set(\"desembolsoId\", \"D001\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// THEN: Verificar el resultado esperado (Verify expected result)",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Validar respuesta esperada\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    // Campo esperado: estado, Valor esperado: EN_PROCESO",
+									"    pm.expect(jsonData.estado).to.eql(\"EN_PROCESO\");",
+									"});",
+									"pm.test(\"Tiempo de respuesta < 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"creditoId\": \"12345\",\n  \"nuevoEstado\": \"EN_PROCESO\"\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/credito/estado",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"credito",
+								"estado"
+							]
+						},
+						"description": "BDD - ActualizarEstadoCredito"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "EmitirCondiciones",
+			"item": [
+				{
+					"name": "GenerarHojaCondiciones",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// GIVEN: Establecer valores de prueba (Set test values)",
+									"pm.environment.set(\"creditoId\", \"12345\");",
+									"pm.environment.set(\"contratoId\", \"C001\");",
+									"pm.environment.set(\"desembolsoId\", \"D001\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// THEN: Verificar el resultado esperado (Verify expected result)",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Validar respuesta esperada\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    // Campo esperado: hojaGenerada, Valor esperado: True",
+									"    pm.expect(jsonData.hojaGenerada).to.eql(true);",
+									"});",
+									"pm.test(\"Tiempo de respuesta < 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"creditoId\": \"12345\"\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/condiciones/hoja",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"condiciones",
+								"hoja"
+							]
+						},
+						"description": "BDD - GenerarHojaCondiciones"
+					},
+					"response": []
+				},
+				{
+					"name": "EmitirCronogramaPagos",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// GIVEN: Establecer valores de prueba (Set test values)",
+									"pm.environment.set(\"creditoId\", \"12345\");",
+									"pm.environment.set(\"contratoId\", \"C001\");",
+									"pm.environment.set(\"desembolsoId\", \"D001\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// THEN: Verificar el resultado esperado (Verify expected result)",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Validar respuesta esperada\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    // Campo esperado: cronogramaEmitido, Valor esperado: True",
+									"    pm.expect(jsonData.cronogramaEmitido).to.eql(true);",
+									"});",
+									"pm.test(\"Tiempo de respuesta < 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"creditoId\": \"12345\"\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/condiciones/cronograma",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"condiciones",
+								"cronograma"
+							]
+						},
+						"description": "BDD - EmitirCronogramaPagos"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "GestionarContratos",
+			"item": [
+				{
+					"name": "RegistrarFirmaContrato",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// GIVEN: Establecer valores de prueba (Set test values)",
+									"pm.environment.set(\"creditoId\", \"12345\");",
+									"pm.environment.set(\"contratoId\", \"C001\");",
+									"pm.environment.set(\"desembolsoId\", \"D001\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// THEN: Verificar el resultado esperado (Verify expected result)",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Validar respuesta esperada\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    // Campo esperado: firmado, Valor esperado: True",
+									"    pm.expect(jsonData.firmado).to.eql(true);",
+									"});",
+									"pm.test(\"Tiempo de respuesta < 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"contratoId\": \"C001\"\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/contrato/firma",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"contrato",
+								"firma"
+							]
+						},
+						"description": "BDD - RegistrarFirmaContrato"
+					},
+					"response": []
+				},
+				{
+					"name": "RegistrarPagoNotarial",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// GIVEN: Establecer valores de prueba (Set test values)",
+									"pm.environment.set(\"creditoId\", \"12345\");",
+									"pm.environment.set(\"contratoId\", \"C001\");",
+									"pm.environment.set(\"desembolsoId\", \"D001\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// THEN: Verificar el resultado esperado (Verify expected result)",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Validar respuesta esperada\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    // Campo esperado: pagoNotarial, Valor esperado: REALIZADO",
+									"    pm.expect(jsonData.pagoNotarial).to.eql(\"REALIZADO\");",
+									"});",
+									"pm.test(\"Tiempo de respuesta < 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"contratoId\": \"C001\"\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/contrato/pago-notarial",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"contrato",
+								"pago-notarial"
+							]
+						},
+						"description": "BDD - RegistrarPagoNotarial"
+					},
+					"response": []
+				},
+				{
+					"name": "RegistrarPagoRegistrales",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// GIVEN: Establecer valores de prueba (Set test values)",
+									"pm.environment.set(\"creditoId\", \"12345\");",
+									"pm.environment.set(\"contratoId\", \"C001\");",
+									"pm.environment.set(\"desembolsoId\", \"D001\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// THEN: Verificar el resultado esperado (Verify expected result)",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Validar respuesta esperada\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    // Campo esperado: pagoRegistral, Valor esperado: REALIZADO",
+									"    pm.expect(jsonData.pagoRegistral).to.eql(\"REALIZADO\");",
+									"});",
+									"pm.test(\"Tiempo de respuesta < 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"contratoId\": \"C001\"\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/contrato/pago-registrales",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"contrato",
+								"pago-registrales"
+							]
+						},
+						"description": "BDD - RegistrarPagoRegistrales"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "GestionarDesembolsos",
+			"item": [
+				{
+					"name": "EjecutarDesembolso",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// GIVEN: Establecer valores de prueba (Set test values)",
+									"pm.environment.set(\"creditoId\", \"12345\");",
+									"pm.environment.set(\"contratoId\", \"C001\");",
+									"pm.environment.set(\"desembolsoId\", \"D001\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// THEN: Verificar el resultado esperado (Verify expected result)",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Validar respuesta esperada\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    // Campo esperado: estado, Valor esperado: EJECUTADO",
+									"    pm.expect(jsonData.estado).to.eql(\"EJECUTADO\");",
+									"});",
+									"pm.test(\"Tiempo de respuesta < 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"desembolsoId\": \"D001\"\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/desembolso/ejecutar",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"desembolso",
+								"ejecutar"
+							]
+						},
+						"description": "BDD - EjecutarDesembolso"
+					},
+					"response": []
+				},
+				{
+					"name": "ConsultarEstadoDesembolso",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// GIVEN: Establecer valores de prueba (Set test values)",
+									"pm.environment.set(\"creditoId\", \"12345\");",
+									"pm.environment.set(\"contratoId\", \"C001\");",
+									"pm.environment.set(\"desembolsoId\", \"D001\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// THEN: Verificar el resultado esperado (Verify expected result)",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Validar respuesta esperada\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    // Campo esperado: estado, Valor esperado: PENDIENTE",
+									"    pm.expect(jsonData.estado).to.eql(\"PENDIENTE\");",
+									"});",
+									"pm.test(\"Tiempo de respuesta < 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}/api/desembolso/estado?desembolsoId=D001",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"desembolso",
+								"estado"
+							],
+							"query": [
+								{
+									"key": "desembolsoId",
+									"value": "D001"
+								}
+							]
+						},
+						"description": "BDD - ConsultarEstadoDesembolso"
+					},
+					"response": []
+				},
+				{
+					"name": "RegistrarFirmaEscrituraPublica",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// GIVEN: Establecer valores de prueba (Set test values)",
+									"pm.environment.set(\"creditoId\", \"12345\");",
+									"pm.environment.set(\"contratoId\", \"C001\");",
+									"pm.environment.set(\"desembolsoId\", \"D001\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// THEN: Verificar el resultado esperado (Verify expected result)",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Validar respuesta esperada\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    // Campo esperado: firmaEscritura, Valor esperado: REGISTRADA",
+									"    pm.expect(jsonData.firmaEscritura).to.eql(\"REGISTRADA\");",
+									"});",
+									"pm.test(\"Tiempo de respuesta < 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"desembolsoId\": \"D001\"\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/desembolso/firma-escritura",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"desembolso",
+								"firma-escritura"
+							]
+						},
+						"description": "BDD - RegistrarFirmaEscrituraPublica"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "{{baseUrl}}",
+			"type": "default"
+		}
+	]
+}
