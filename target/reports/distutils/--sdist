@@ -1,0 +1,44 @@
+* Creating isolated environment: venv+pip...
+* Installing packages in isolated environment:
+  - setuptools >= 40.8.0
+* Getting build dependencies for sdist...
+running egg_info
+creating pract3.egg-info
+writing pract3.egg-info\PKG-INFO
+writing dependency_links to pract3.egg-info\dependency_links.txt
+writing entry points to pract3.egg-info\entry_points.txt
+writing namespace_packages to pract3.egg-info\namespace_packages.txt
+writing top-level names to pract3.egg-info\top_level.txt
+writing manifest file 'pract3.egg-info\SOURCES.txt'
+reading manifest file 'pract3.egg-info\SOURCES.txt'
+writing manifest file 'pract3.egg-info\SOURCES.txt'
+* Building sdist...
+running sdist
+running egg_info
+writing pract3.egg-info\PKG-INFO
+writing dependency_links to pract3.egg-info\dependency_links.txt
+writing entry points to pract3.egg-info\entry_points.txt
+writing namespace_packages to pract3.egg-info\namespace_packages.txt
+writing top-level names to pract3.egg-info\top_level.txt
+reading manifest file 'pract3.egg-info\SOURCES.txt'
+writing manifest file 'pract3.egg-info\SOURCES.txt'
+warning: sdist: standard file not found: should have one of README, README.rst, README.txt, README.md
+
+running check
+creating pract3-1.0.0
+creating pract3-1.0.0\pract3.egg-info
+copying files to pract3-1.0.0...
+copying pract3.py -> pract3-1.0.0
+copying setup.py -> pract3-1.0.0
+copying pract3.egg-info\PKG-INFO -> pract3-1.0.0\pract3.egg-info
+copying pract3.egg-info\SOURCES.txt -> pract3-1.0.0\pract3.egg-info
+copying pract3.egg-info\dependency_links.txt -> pract3-1.0.0\pract3.egg-info
+copying pract3.egg-info\entry_points.txt -> pract3-1.0.0\pract3.egg-info
+copying pract3.egg-info\namespace_packages.txt -> pract3-1.0.0\pract3.egg-info
+copying pract3.egg-info\top_level.txt -> pract3-1.0.0\pract3.egg-info
+copying pract3.egg-info\zip-safe -> pract3-1.0.0\pract3.egg-info
+copying pract3.egg-info\SOURCES.txt -> pract3-1.0.0\pract3.egg-info
+Writing pract3-1.0.0\setup.cfg
+Creating tar archive
+removing 'pract3-1.0.0' (and everything under it)
+Successfully built pract3-1.0.0.tar.gz

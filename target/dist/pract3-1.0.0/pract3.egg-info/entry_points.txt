@@ -1,0 +1,2 @@
+[console_scripts]
+pract3 = pract3:main

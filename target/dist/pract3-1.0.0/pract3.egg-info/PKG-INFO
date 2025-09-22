@@ -1,0 +1,17 @@
+Metadata-Version: 2.4
+Name: pract3
+Version: 1.0.0
+Summary: Cifrador de Vigenère con opción de módulo 27 y 191
+Home-page: 
+Author: 
+Author-email: 
+Maintainer: 
+Maintainer-email: 
+Classifier: Development Status :: 3 - Alpha
+Classifier: Programming Language :: Python
+Dynamic: classifier
+Dynamic: description
+Dynamic: keywords
+Dynamic: summary
+
+Cifrador de Vigenère con opción de módulo 27 y 191

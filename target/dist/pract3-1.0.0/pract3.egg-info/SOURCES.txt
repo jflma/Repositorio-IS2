@@ -1,0 +1,9 @@
+pract3.py
+setup.py
+pract3.egg-info/PKG-INFO
+pract3.egg-info/SOURCES.txt
+pract3.egg-info/dependency_links.txt
+pract3.egg-info/entry_points.txt
+pract3.egg-info/namespace_packages.txt
+pract3.egg-info/top_level.txt
+pract3.egg-info/zip-safe
